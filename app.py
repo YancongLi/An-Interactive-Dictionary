@@ -3,12 +3,12 @@ from difflib import get_close_matches
 
 data = json.load(open("data.json"))
 
-def translate(w):
+def find(w):
     w1 = w.lower() #normal cases
     w2 = w.title() #edge cases for words like China, Canada
     w3 = w.upper() #edge cases for words like USA, NATO
     listOfPotentialMatch = get_close_matches(w, data.keys(), cutoff = 0.8)
-    if w1 in data in data:
+    if w1 in data:
         return data[w1]
     elif w2 in data:
         return data[w2]
@@ -28,7 +28,7 @@ def translate(w):
 
 word = input("Enter word: ")
 
-definition = translate(word)
+definition = find(word)
 
 if type(definition) is list:
     index = 0
